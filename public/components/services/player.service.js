@@ -3,7 +3,7 @@
         .module('myApp')
         .service('playerService', playerService);
 
-    function playerService() {
+    function playerService($http) {
         var users = [];
         // Se declara el API para poder acceder a estos datos desde otro lugar
         var publicAPI = {
@@ -32,11 +32,11 @@
             return $http.get('http://localhost:3000/api/get_all_users');
         }
         // Busca al comprador
-        function _getUser(customer) {
-            var usersList = _getUsers();
-            for (var i = 0; i < usersList.length; i++) {
-                if (customer == usersList[i].id) {
-                    return usersList[i];
+        function _getUser(customer, playerList) {
+            //var usersList = _getUsers();
+            for (var i = 0; i < playerList.length; i++) {
+                if (customer == playerList[i].id) {
+                    return playerList[i];
                 }
             }
         }

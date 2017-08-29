@@ -3,18 +3,33 @@
 	angular
 	.module('myApp')
 	.controller('adminController', adminController);
-	adminController.$inject = ['playerService', 'Upload', 'ImageService', 'propertiesService'];
+	adminController.$inject = ['$http', 'playerService', 'Upload', 'ImageService', 'propertiesService'];
 
 	// Inicia función adminController
-	function adminController(playerService, Upload, ImageService, propertiesService) {
+	function adminController($http, playerService, Upload, ImageService, propertiesService) {
 		var vm = this;
 		vm.cloudObj = ImageService.getConfiguration(); //Para la imagen
+		loadPlayers();
+		// Carga la lista de jugadores
+		function loadPlayers() {
+			playerService.getUsers().then(function (response){
+				vm.users = response.data;
+			})
+		}
+		// Carga la lista de propiedades
+		function loadProperties() {
+			propertiesService.getProps().then(function (response){
+				vm.properties = response.data;
+			})
+		}
 
 		// Función que se llama a sí sola para cargar la info actual
 		function init() {
-			vm.users = playerService.getUsers(); //Lista de todos los jugadores
+			loadPlayers();
+			// vm.users = playerService.getUsers(); //Lista de todos los jugadores
 			vm.user = {}; //Cleans the form
-			vm.properties = propertiesService.getProps(); //LIsta de propiedades
+			// vm.properties = propertiesService.getProps(); //LIsta de propiedades
+			loadProperties();
 		}
 		init();
 
@@ -33,30 +48,44 @@
 
 		vm.save = function(newUser) {
 			newUser.money = 1000;
-			var userVal = playerService.valNewUser(newUser); //Verifica si el usuario ya está registrado o no
-			if (userVal === false) {
-				playerService.setUser(newUser); //Guarda
+			// var userVal = playerService.valNewUser(newUser); //Verifica si el usuario ya está registrado o no
+			// if (userVal === false) {
+				// playerService.setUser(newUser); //Guarda
+				playerService.setUser(newUser).then(function (response) {
+					vm.users = response.data;
+				})
 				// $('#frmSuccess').modal(); //Validación, muestra un mensaje que se realizó el form
-			}else{
-				// $('#frmError').modal();
-			} //Cierra if & else
+			// }else{
+			// 	// $('#frmError').modal();
+			// } //Cierra if & else
 			init();
 		} //Cierra vm.save
 
 		// Realiza la compra
 		vm.purchase = function(infoPurchase) {
-			var property = propertiesService.getProperty(infoPurchase.property);
-			var user = playerService.getUser(infoPurchase.user);
+			var playerList = vm.users;
+			var propsList = vm.properties;
+			// console.log(playerList);
+			// console.log(propsList);
+			var property = propertiesService.getProperty(infoPurchase.property, propsList);
+			var user = playerService.getUser(infoPurchase.user, playerList);
 			// console.log(property);
 			// console.log(user);
-			if (property.ownedby === -1) {
+			if (property.ownedby == -1) {
 				if (user.money >= property.price) {
 					user.money -= property.price;
 					property.ownedby = user.id;
-					propertiesService.updateProps(property); //Actualiza la información de las propiedades, si ya tienen dueño
-					playerService.updateMoney(user); //Actualiza la información del usuario, se le resta la cantidad de dinero
+					// propertiesService.updateProps(property); //Actualiza la información de las propiedades, si ya tienen dueño
+					propertiesService.updateProps(property).then(function (response) {
+						vm.properties = response.data;
+					})
+					// playerService.updateMoney(user); //Actualiza la información del usuario, se le resta la cantidad de dinero
+					playerService.updateMoney(user).then(function (response) {
+						vm.users = response.data;
+					})
 				}
 			} //Cierran los if
+			init();
 		} //Cierra vm.purchase
 
 	} //Cierra la función adminController

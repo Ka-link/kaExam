@@ -1,7 +1,7 @@
-var User = require('./player.model.js');
+var user = require('./player.model.js');
 
 module.exports.save = function(req, res){
-  var newUser = new User({
+  var newUser = new user({
     id: req.body.id,
     alias: req.body.alias,
     name: req.body.name,
@@ -11,21 +11,21 @@ module.exports.save = function(req, res){
 
   newUser.save(function(err){
     if(err){
-      res.json({success:false,msg:'El jugador ya existe, registre otro.'});
+      res.json({success:false,msg:'El usuario ya existe.'});
     }else{
-      res.json({success:true,msg:'Se ha registrado correctamente el jugador.'});
+      res.json({success:true,msg:'Se ha registrado correctamente.'});
     }
   });
 };
 
 module.exports.findAll = function(req,res){
-  User.find().then(function(user){
-    res.send(user);
+  user.find().then(function(users){
+    res.send(users);
   })
 };
 
 module.exports.update = function(req,res){
-  User.findByIdAndUpdate(req.body._id, { $set: req.body}, function (err, user) {
+  user.findByIdAndUpdate(req.body._id, { $set: req.body}, function (err, user) {
     if (err){
       res.json({success:true,msg:'No se ha actualizado.' + handleError(err)});
     } else{

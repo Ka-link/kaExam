@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 //Esquema de propiedades
-var PropertySchema = new mongoose.Schema({
+var propertySchema = new mongoose.Schema({
   name: {type: String, require: true},
   id: {type: String, require: true},
   posistion: {type: String, require: true},
-  price: {type: Number, require: true},
+  price: {type: String, require: true},
   rent: {type: String, require: true},
   multpliedrent: [],
   housecost: {type: String, require: true},
@@ -24,5 +24,4 @@ var PropertySchema = new mongoose.Schema({
   averageProbability: {type: String, require: true}
 });
 
-module.exports = mongoose.model('Property', PropertySchema); //nombre del modelo dentro del back end y el userSchema es el nombre dentro de mongoose
-//User va en mayúscula y singular aunque en la bd todo se pone en minúscula y plural
+module.exports = mongoose.model('property', propertySchema);

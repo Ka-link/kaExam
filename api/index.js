@@ -1,4 +1,4 @@
-// Dependencias de node
+// Se establecen las dependencias que Node va a utilizar
 var express = require('express'),
     router = express.Router(),
     path = require('path');
