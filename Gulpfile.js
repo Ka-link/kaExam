@@ -1,7 +1,11 @@
 'use strict';
 var gulp = require('gulp');
 var nib = require('nib');
+<<<<<<< HEAD
 // var nodemon = require('gulp-nodemon'); Backend
+=======
+var nodemon = require('gulp-nodemon');
+>>>>>>> Kaleen
 var connect = require('gulp-connect');
 
 gulp.task('connect',function(){
@@ -10,7 +14,11 @@ gulp.task('connect',function(){
     port:4000,
     livereload:true
   });
+<<<<<<< HEAD
   // nodemon();
+=======
+  nodemon();
+>>>>>>> Kaleen
 });
 
 //tarea para recargar el css

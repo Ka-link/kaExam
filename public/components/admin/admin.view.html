@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+<!-- Nav -->
+
+>>>>>>> Kaleen
 <!-- Inicio registro de jugadores -->
 <div class="container-fluid">
     <h2>Registrar jugador</h2>
@@ -29,7 +34,11 @@
             </thead>
         </tr>
         <tr>
+<<<<<<< HEAD
             <tbody ng-repeat="user in vm.users track by $index">
+=======
+            <tbody ng-repeat="user in vm.users">
+>>>>>>> Kaleen
                 <td> <img src="{{user.photo}}" width="130px" height="130px"> </td>
                 <td> {{user.id}} </td>
                 <td> {{user.name}} </td>
@@ -53,7 +62,11 @@
             </thead>
         </tr>
         <tr>
+<<<<<<< HEAD
             <tbody ng-repeat="property in vm.properties track by $index">
+=======
+            <tbody ng-repeat="property in vm.properties">
+>>>>>>> Kaleen
                 <td>{{property.name}}</td>
                 <td>{{property.id}}</td>
                 <td>{{property.price}}</td>
@@ -71,13 +84,21 @@
         <input list="propertiesList" type="text" ng-model="vm.infoPurchase.property">
         <datalist id="propertiesList">
             <option>-- Seleccione una propiedad --</option>
+<<<<<<< HEAD
             <option ng-repeat="property in vm.properties track by $index" value="{{property.id}}"> {{property.name}} </option>
+=======
+            <option ng-repeat="property in vm.properties" value="{{property.id}}"> {{property.name}} </option>
+>>>>>>> Kaleen
         </datalist>
         <!-- Datalist de jugadores -->
         <input list="playersList" type="text" ng-model="vm.infoPurchase.user">
         <datalist id="playersList">
             <option>-- Seleccione un usuario --</option>
+<<<<<<< HEAD
             <option ng-repeat="user in vm.users track by $index" value="{{user.id}}"> {{user.name}} </option>
+=======
+            <option ng-repeat="user in vm.users" value="{{user.id}}"> {{user.name}} </option>
+>>>>>>> Kaleen
         </datalist>
 
         <button ng-click="vm.reset()" ng-disable="frmPurchaseReg.$invalid">Comprar</button>
