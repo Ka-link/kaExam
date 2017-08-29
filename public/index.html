@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!-- Css -->
+    <link rel="stylesheet" href="./css/style.general.css">
+  </head>
+  <body>
+    <div ui-view></div>
+    <!-- AngularJs' Dependencies -->
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <!-- App's scripts -->
+    <script src="app.js"></script>
+    <script src="route.js"></script>
+    <!-- Services -->
+    <script src="./components/services/player.service.js"></script>
+    <script src="./components/services/image.service.js"></script>
+    <script src="./components/services/properties.service.js"></script>
+    <!-- Controllers -->
+     <script src="./components/admin/admin.controller.js"></script>
+  </body>
+</html>
