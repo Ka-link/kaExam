@@ -44,16 +44,18 @@ body {
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h6 {
     margin: 0;
     color: #212121;
 }
-
+h5{
+  color: green;
+}
 h2 {
     font-family: oneR;
     font-size: 1.85em;
     letter-spacing: 2px;
-    margin-top: 2%;
+    margin: 2% 0 2.6%;
 }
 
 p, label, input {
@@ -213,16 +215,28 @@ a href:hover {
    .media
     {
         /*box-shadow:0px 0px 4px -2px #000;*/
-        margin: 20px 0;
-        padding:30px;
+        margin: 2% 0;
+        padding: 5%;
+        border: solid 1px #fd7014;
+        letter-spacing: 1px;
     }
-    .dp
-    {
+
+
+    .media .media-body p{
+      line-height: 30px;
+      margin: 0 6%;
+    }
+
+    .media .media-body h4{
+      line-height: 30px;
+      margin: 0 6%;
+    }
+
+    .dp{
         border:3px solid #eee;
         transition: all 0.5s ease-in-out;
     }
-    .dp:hover
-    {
+    .dp:hover{
         border:2px solid #eee;
         transform:rotate(360deg);
         -ms-transform:rotate(360deg);  
@@ -230,10 +244,13 @@ a href:hover {
        /* -webkit-font-smoothing:antialiased;*/
     }
 
-/*Card's style*/
+
+
+
+/*Property Card's style*/
 .card .card-block{
-  letter-spacing: 1px;
-  border: solid 1px #fd7014;;
+  letter-spacing: 2px;
+  border: solid 1px #fd7014;
   margin: 4% 0%;
   height: 120px;
   padding: 3% 5% 5%;
@@ -251,4 +268,51 @@ color: #fff;
 
 .card .card-block .card-text{
   line-height: 10px;
+}
+
+
+/*Estilos del botón upload*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    background: #b3b3b3;
+    border-radius: 10px;
+    margin-top: 2.5%;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.btn-primary {
+  position: relative;
+  background: #fd7014;
+  padding: 0.8% 1.4%;
+  outline: none;
+  border: none;
+  margin: 2% 0 0 1%;
+}
+.btn-primary:hover{
+  background: #fff;
+  color: #fd7014;
+  border: solid 1px #fd7014;
+}
+
+input[type=text] {
+  position: relative;
+  border: solid 1px #aaaaaa;
+  border-radius: 13px;
+  outline: none;
+  padding: 1.5%;
+  margin: 2.5% 0;
 }

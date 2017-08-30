@@ -8,6 +8,10 @@
 	// Inicia función adminController
 	function adminController($http, playerService, Upload, ImageService, propertiesService) {
 		var vm = this;
+		vm.alert1 = {state:false};
+		vm.buyAlert = {state: false};
+		vm.buyAlert2 = {state: false};
+		vm.buyAlert3 = {state: false};
 		vm.cloudObj = ImageService.getConfiguration(); //Para la imagen
 		loadPlayers();
 		// Carga la lista de jugadores
@@ -53,7 +57,8 @@
 				// playerService.setUser(newUser); //Guarda
 				playerService.setUser(newUser).then(function (response) {
 					vm.users = response.data;
-				})
+				});
+				vm.alert1 = {state:true};
 				// $('#frmSuccess').modal(); //Validación, muestra un mensaje que se realizó el form
 			// }else{
 			// 	// $('#frmError').modal();
@@ -83,7 +88,12 @@
 					playerService.updateMoney(user).then(function (response) {
 						vm.users = response.data;
 					})
+					vm.buyAlert = {state: true};
+				}else{
+					vm.buyAlert2 = {state: true};
 				}
+			}else{
+				vm.buyAlert3 = {state: true};
 			} //Cierran los if
 			init();
 		} //Cierra vm.purchase
