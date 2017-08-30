@@ -1,88 +1,196 @@
-<!-- Nav -->
+<div>
+    <!-- Tab panel -->
+    <div class="container-fluid tabbable-panel ">
+        <!-- Nav tab -->
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs">
+                <!--  Tab Jugadores -->
+                <li class="dropdown">
+                    <a class="hvr-underline-from-center" href="#" data-toggle="dropdown">Jugadores <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#tab_register" data-toggle="tab">Registrar jugador</a></li>
+                        <li><a href="#tab_list" data-toggle="tab">Visualizar jugadores</a></li>
+                    </ul>
+                </li>
+                <!-- Tab propiedades -->
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown">Propiedades <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#tab_properties" data-toggle="tab">Propiedades en venta</a></li>
+                        <li><a href="#tab_buy" data-toggle="tab">Comprar propiedades</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Close Nav tab -->
+        <!-- Tab info container -->
+        <div class="tab-content">
+            <!-- Register's Tab -->
+            <div class="tab-pane active" id="tab_register">
+                <div class="container-fluid">
+                    <h2 class="panel-heading">Registrar jugador</h2>
+                    <form class="col-xs-10" ng-submit="vm.presave(vm.user)" name="frmPlayerReg">
+                        <input type="file" ng-model="vm.user.photo" id="photo">
+                        <!-- Photo -->
+                        <input type="text" ng-model="vm.user.id" required>
+                        <!-- id -->
+                        <input type="text" ng-model="vm.user.name" required>
+                        <!-- name -->
+                        <input type="text" ng-model="vm.user.alias" required>
+                        <!-- alias -->
+                        <button ng-click="vm.reset()" ng-disable="frmPlayerReg.$invalid">Registrar</button>
+                        <!-- Button -->
+                    </form>
+                </div>
+                <!-- Close register form -->
+            </div>
+            <!-- Close Tab form -->
+            <div class="tab-pane" id="tab_list">
+                <div class="row col-xs-12">
+                    <h2 class="panel-heading">Jugadores registrados</h2>
+                    <!-- User's card -->
+                    <div class="col-md-4 col-lg-3" ng-repeat="user in vm.users">
+                        <div class="media">
+                            <a class="pull-left">
+                            <img class="media-object dp img-circle" src="{{ user.photo }}" style="width: 100px;height:100px;">
+                        </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ user.alias }}</h4>
+                                <p>{{ user.id }}</p>
+                                <p>{{ user.name }}</p>
+                                <p>{{ user.money | currency }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EndS card -->
+                </div>
+            </div>
+            <!-- Close Tab list -->
+            <!-- Property tab -->
+            <div class="tab-pane" id="tab_properties">
+                <h2 class="panel-heading">Propiedades en venta</h2>
+                <div class="card col-sm-3" ng-repeat="property in vm.properties">
+                    <div class="card-block">
+                        <h4 class="card-title">{{property.name}}</h4>
+                        <p class="card-text">Id: {{ property.id }}</p>
+                        <p class="card-text">Precio: {{ property.price }}</p>
+                        <p class="card-text">Dueño: {{ property.ownedby }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Close Property Tab -->
+            <!-- Buy Tab -->
+            <div class="tab-pane" id="tab_buy">
+                <div class="container-fluid">
+                    <h2 class="panel-heading">Venta de propiedades</h2>
+                    <form ng-submit="vm.purchase(vm.infoPurchase)" name="frmPurchaseReg">
+                        <!-- Datalist de propiedades -->
+                        <input list="propertiesList" type="text" ng-model="vm.infoPurchase.property">
+                        <datalist id="propertiesList">
+                            <option>-- Seleccione una propiedad --</option>
+                            <option ng-repeat="property in vm.properties" value="{{property.id}}"> {{property.name}} </option>
+                        </datalist>
+                        <!-- Datalist de jugadores -->
+                        <input list="playersList" type="text" ng-model="vm.infoPurchase.user">
+                        <datalist id="playersList">
+                            <option>-- Seleccione un usuario --</option>
+                            <option ng-repeat="user in vm.users" value="{{user.id}}"> {{user.name}} </option>
+                        </datalist>
+                        <button ng-click="vm.reset()" ng-disable="frmPurchaseReg.$invalid">Comprar</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Close Buy Tab -->
+        </div>
+        <!-- Close Tab info Container -->
+    </div>
+    <!-- Close tab panel -->
 
-<!-- Inicio registro de jugadores -->
-<div class="container-fluid">
-    <h2>Registrar jugador</h2>
-    <form class="col-xs-10" ng-submit="vm.presave(vm.user)" name="frmPlayerReg">
-        <input type="file" ng-model="vm.user.photo" id="photo">
-        <!-- Photo -->
-        <input type="text" ng-model="vm.user.id" required>
-        <!-- id -->
-        <input type="text" ng-model="vm.user.name" required>
-        <!-- name -->
-        <input type="text" ng-model="vm.user.alias" required>
-        <!-- alias -->
-        <button ng-click="vm.reset()" ng-disable="frmPlayerReg.$invalid">Registrar</button>
-        <!-- Button -->
-    </form>
-</div>
-<hr>
-<!-- Mostrar registro de jugadores -->
-<div class="container-fluid">
-    <h2>Jugadores registrados</h2>
-    <table>
-        <tr>
-            <thead>
-                <th>Foto</th>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Alias</th>
-                <th>Dinero</th>
-            </thead>
-        </tr>
-        <tr>
-            <tbody ng-repeat="user in vm.users">
-                <td> <img src="{{user.photo}}" width="130px" height="130px"> </td>
-                <td> {{user.id}} </td>
-                <td> {{user.name}} </td>
-                <td> {{user.alias}} </td>
-                <td> {{user.money}} </td>
-            </tbody>
-        </tr>
-    </table>
-</div>
-<!-- Inicio ver propiedades -->
-<hr>
-<div class="container-fluid">
-    <h2>Propiedades en venta</h2>
-    <table>
-        <tr>
-            <thead>
-                <th>Nombre de la propiedad</th>
-                <th>Id</th>
-                <th>Precio</th>
-                <th>Dueño</th>
-            </thead>
-        </tr>
-        <tr>
-            <tbody ng-repeat="property in vm.properties">
-                <td>{{property.name}}</td>
-                <td>{{property.id}}</td>
-                <td>{{property.price}}</td>
-                <td>{{property.ownedby}}</td>
-            </tbody>
-        </tr>
-    </table>
-</div>
-<!-- Inicio de formulario de transacción de compra de propiedades -->
-<hr>
-<div class="container-fluid">
-    <h2>Venta de propiedades</h2>
-    <form ng-submit="vm.purchase(vm.infoPurchase)" name="frmPurchaseReg">
-        <!-- Datalist de propiedades -->
-        <input list="propertiesList" type="text" ng-model="vm.infoPurchase.property">
-        <datalist id="propertiesList">
-            <option>-- Seleccione una propiedad --</option>
-            <option ng-repeat="property in vm.properties" value="{{property.id}}"> {{property.name}} </option>
-        </datalist>
-        <!-- Datalist de jugadores -->
-        <input list="playersList" type="text" ng-model="vm.infoPurchase.user">
-        <datalist id="playersList">
-            <option>-- Seleccione un usuario --</option>
-            <option ng-repeat="user in vm.users" value="{{user.id}}"> {{user.name}} </option>
-        </datalist>
 
-        <button ng-click="vm.reset()" ng-disable="frmPurchaseReg.$invalid">Comprar</button>
-    </form>
-</div>
 
+    
+    <!-- Inicio registro de jugadores -->
+   <!--  <div class="container-fluid">
+        <h2>Registrar jugador</h2> -->
+        <!-- <form class="col-xs-10" ng-submit="vm.presave(vm.user)" name="frmPlayerReg">
+            <input type="file" ng-model="vm.user.photo" id="photo"> -->
+            <!-- Photo -->
+            <!-- <input type="text" ng-model="vm.user.id" required> -->
+            <!-- id -->
+           <!--  <input type="text" ng-model="vm.user.name" required> -->
+            <!-- name -->
+          <!--   <input type="text" ng-model="vm.user.alias" required> -->
+            <!-- alias -->
+           <!--  <button ng-click="vm.reset()" ng-disable="frmPlayerReg.$invalid">Registrar</button> -->
+            <!-- Button -->
+<!--         </form>
+    </div>
+    <hr> -->
+    <!-- Mostrar registro de jugadores -->
+<!--     <div class="container-fluid">
+        <h2>Jugadores registrados</h2>
+        <table>
+            <tr>
+                <thead>
+                    <th>Foto</th>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Alias</th>
+                    <th>Dinero</th>
+                </thead>
+            </tr>
+            <tr>
+                <tbody ng-repeat="user in vm.users">
+                    <td> <img src="{{user.photo}}" width="130px" height="130px"> </td>
+                    <td> {{user.id}} </td>
+                    <td> {{user.name}} </td>
+                    <td> {{user.alias}} </td>
+                    <td> {{user.money}} </td>
+                </tbody>
+            </tr>
+        </table>
+    </div> -->
+    <!-- Inicio ver propiedades -->
+<!--     <hr>
+    <div class="container-fluid">
+        <h2>Propiedades en venta</h2>
+        <table>
+            <tr>
+                <thead>
+                    <th>Nombre de la propiedad</th>
+                    <th>Id</th>
+                    <th>Precio</th>
+                    <th>Dueño</th>
+                </thead>
+            </tr>
+            <tr>
+                <tbody ng-repeat="property in vm.properties">
+                    <td>{{property.name}}</td>
+                    <td>{{property.id}}</td>
+                    <td>{{property.price}}</td>
+                    <td>{{property.ownedby}}</td>
+                </tbody>
+            </tr>
+        </table>
+    </div> -->
+    <!-- Inicio de formulario de transacción de compra de propiedades -->
+<!--     <hr>
+    <div class="container-fluid">
+        <h2>Venta de propiedades</h2>
+        <form ng-submit="vm.purchase(vm.infoPurchase)" name="frmPurchaseReg"> -->
+            <!-- Datalist de propiedades -->
+<!--             <input list="propertiesList" type="text" ng-model="vm.infoPurchase.property">
+            <datalist id="propertiesList">
+                <option> Seleccione una propiedad </option>
+                <option ng-repeat="property in vm.properties" value="{{property.id}}"> {{property.name}} </option>
+            </datalist> -->
+            <!-- Datalist de jugadores -->
+<!--             <input list="playersList" type="text" ng-model="vm.infoPurchase.user">
+            <datalist id="playersList">
+                <option> Seleccione un usuario </option>
+                <option ng-repeat="user in vm.users" value="{{user.id}}"> {{user.name}} </option>
+            </datalist>
+            <button ng-click="vm.reset()" ng-disable="frmPurchaseReg.$invalid">Comprar</button>
+        </form>
+    </div>
+</div> -->

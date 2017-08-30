@@ -1,0 +1,254 @@
+/*	 Fonts 	*/
+
+
+/*Regular font. For texts, paragraphs and notes*/
+
+@font-face {
+    font-family: arimoR;
+    src: url('fonts/Arimo-Regular.ttf')
+}
+
+
+
+/*Italic font. For quotes and small details.*/
+
+@font-face {
+    font-family: arimoL;
+    src: url('fonts/Arimo-Italic.ttf')
+}
+
+
+
+/*Bold font. For titles.*/
+
+@font-face {
+    font-family: oneR;
+    src: url('fonts/FjallaOne-Regular.ttf')
+}
+
+
+
+/*General styles are defined here*/
+
+
+/*Color palette*/
+
+
+/*	Black: #212121;
+	Orange: #fd7014;
+	Grey: #eeeeee;
+	White: #fff;	*/
+
+body {
+    width: 100%;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #212121;
+}
+
+h2 {
+    font-family: oneR;
+    font-size: 1.85em;
+    letter-spacing: 2px;
+    margin-top: 2%;
+}
+
+p, label, input {
+    font-family: arimoR;
+    font-size: 1em;
+    color: #212121;
+}
+
+p {
+    line-height: 10%;
+}
+
+
+a href {
+    font-family: arimoR;
+    font-size: 0.875em;
+    color: #fff;
+}
+
+a href:hover {
+    font-family: arimoR;
+    font-size: 0.875em;
+    color: #fd7014;
+}
+
+/*Specific styles*/
+
+/* stop the glowing blue shadow */
+.inner-addon .fromText:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #eeeeee;
+}
+
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+}
+
+
+/* align glyph */
+.inner-addon .left-addon .glyphicon {
+    left: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+/*Form's button*/
+.btnContain .btnRegister {
+    font-family: arimoR;
+    font-size: 1em;
+    border: #fd7014 solid 1px;
+    color: #fd7014
+
+}
+.btnContain .btnRegister:hover {
+	border: none;
+	color: #fff;
+	background: #fd7014;
+}
+
+/*Tabs style*/
+/* Tabs panel */
+.tabbable-panel {
+  padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  border: none;
+  margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+  margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+  border: 0;
+  margin-right: 0;
+  color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+  border-bottom: 4px solid #ffdec9;
+  /*aca*/
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+  border: 0;
+  background: none !important;
+  color: #fd7014;;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  border-bottom: 4px solid #fd7014;
+  position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+  border: 0;
+  color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+  color: #404040;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+/* Below tabs mode */
+
+.tabbable-line.tabs-below > .nav-tabs > li {
+  border-top: 4px solid transparent;
+}
+.tabbable-line.tabs-below > .nav-tabs > li > a {
+  margin-top: 0;
+}
+.tabbable-line.tabs-below > .nav-tabs > li:hover {
+  border-bottom: 0;
+  border-top: 4px solid #fbcdcf;
+}
+.tabbable-line.tabs-below > .nav-tabs > li.active {
+  margin-bottom: -2px;
+  border-bottom: 0;
+  border-top: 4px solid #f3565d;
+}
+.tabbable-line.tabs-below > .tab-content {
+  margin-top: -10px;
+  border-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+/*View users style*/
+   .media
+    {
+        /*box-shadow:0px 0px 4px -2px #000;*/
+        margin: 20px 0;
+        padding:30px;
+    }
+    .dp
+    {
+        border:3px solid #eee;
+        transition: all 0.5s ease-in-out;
+    }
+    .dp:hover
+    {
+        border:2px solid #eee;
+        transform:rotate(360deg);
+        -ms-transform:rotate(360deg);  
+        -webkit-transform:rotate(360deg);  
+       /* -webkit-font-smoothing:antialiased;*/
+    }
+
+/*Card's style*/
+.card .card-block{
+  letter-spacing: 1px;
+  border: solid 1px #fd7014;;
+  margin: 4% 0%;
+  height: 120px;
+  padding: 3% 5% 5%;
+  border-radius: 5px;
+}
+.card .card-block:hover{
+background: #f07843;
+border: solid 1px #fff;
+color: #fff;
+}
+/*fe8d44*/
+.card .card-block .card-title{
+  line-height: 30px;
+}
+
+.card .card-block .card-text{
+  line-height: 10px;
+}
